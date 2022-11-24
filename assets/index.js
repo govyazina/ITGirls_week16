@@ -229,26 +229,30 @@ function fillSelect() {
     const arr = models[selectedModel];
     for (let i = 0; i < arr.length; i++) {
         let data = `${arr[i].engine} ${arr[i].modification}`;
-        let price = arr[i].price
-        addOption(data, price);
+        let id = arr[i].id;
+        addOption(data, id);
     }
 
 }
 
-function addOption(data, price) {
+function addOption(data, id) {
     let option = document.createElement("option");
-    option.value = price;
+    option.value = id;
     option.innerHTML = data;
     document.querySelector("select.modification").appendChild(option);
 }
 
 function showSum() {
-    let basePrice = document.querySelector("select.modification").value;
-    let sum = calcSum(basePrice);
+    let idMod = document.querySelector("select.modification").value;
+    let sum = calcSum(idMod);
     document.querySelector("div.sum").innerHTML = "&#8364;" + sum;
 }
 
-function calcSum(bp) {
-    return bp;
-
+function calcSum(i) {
+    let arr = models[selectedModel];
+    const indexArr = arr.findIndex(function (e) {
+        return i == e.id;
+    });
+   return arr[indexArr].price;
 }
+
