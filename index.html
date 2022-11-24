@@ -6,6 +6,20 @@
   <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
+<section class="car_calc">
+  <div class="model" oninput="selectModel()">
+      <input type="radio" name="model" id="a3" value="A3">
+      <label for="a3">A3</label>
+      <input type="radio" name="model" id="q3" value="Q3">
+      <label for="q3">Q3</label>
+  </div>
+  <div class="modification">
+      <select class="modification">
+          <option disabled selected>выберите двигатель</option>
+      </select>
+  </div>
+    <button class="calc-sum">рассчитать стоимость</button>
+</section>
 
 <script src="./assets/index.js"></script>
 </body>
