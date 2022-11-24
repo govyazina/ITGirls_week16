@@ -216,6 +216,11 @@ const optionalEquipment = [
 let selectedModel;
 
 function selectModel() {
+    if (selectedModel){
+        let element = document.querySelector("select.modification");
+        element.innerHTML = "";
+        element.insertAdjacentHTML("afterbegin","<option disabled selected>выберите двигатель</option>");
+    }
     selectedModel = document.querySelector('input[name="model"]:checked').value;
     fillSelect()
 }
