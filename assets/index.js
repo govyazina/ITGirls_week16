@@ -229,13 +229,26 @@ function fillSelect() {
     const arr = models[selectedModel];
     for (let i = 0; i < arr.length; i++) {
         let data = `${arr[i].engine} ${arr[i].modification}`;
-        addOption(data);
+        let price = arr[i].price
+        addOption(data, price);
     }
 
 }
 
-function addOption(data) {
+function addOption(data, price) {
     let option = document.createElement("option");
+    option.value = price;
     option.innerHTML = data;
     document.querySelector("select.modification").appendChild(option);
+}
+
+function showSum() {
+    let basePrice = document.querySelector("select.modification").value;
+    let sum = calcSum(basePrice);
+    document.querySelector("div.sum").innerHTML = "&#8364;" + sum;
+}
+
+function calcSum(bp) {
+    return bp;
+
 }
