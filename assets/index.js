@@ -1,15 +1,15 @@
 let numbers = [];
 
 function addInArray() {
-    let inputValue = document.querySelector("#input").value;
-    if (!isNaN(Number(inputValue))) {
-        numbers.push(Number(inputValue));
-        let div = document.querySelector(".input_add").cloneNode(true);
-        div.innerHTML = `${inputValue}`;
-        document.querySelector(".input_add").after(div);
+    let input = document.querySelector("#input");
+    if (!isNaN(Number(input.value))) {
+        numbers.push(Number(input.value));
+        let inputAddDiv = document.querySelector(".input_add");
+        let div = inputAddDiv.cloneNode(true);
+        div.innerHTML = `${input.value}`;
+        inputAddDiv.after(div);
     }
-    document.querySelector("#input").value = "";
-
+    input.value = "";
 }
 
 function sumInput() {
