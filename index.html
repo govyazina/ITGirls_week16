@@ -8,19 +8,22 @@
 <body>
 <section class="car_calc">
   <div class="model" oninput="selectModel()">
+      <fieldset class="car_model">
+          <legend>Выберите модель</legend>
       <input type="radio" name="model" id="a3" value="A3">
       <label for="a3">A3</label>
       <input type="radio" name="model" id="q3" value="Q3">
       <label for="q3">Q3</label>
+      </fieldset>
   </div>
   <div class="modification">
       <select class="modification" oninput="selectModification()">
           <option disabled selected>выберите двигатель</option>
       </select>
   </div>
-    <div class="optionalEquipment">
+    <fieldset class="optionalEquipment">
 
-    </div>
+    </fieldset>
     <section class="sum">
         <button class="calc-sum" onclick="showSum()">рассчитать стоимость</button>
         <div class="sum"></div>

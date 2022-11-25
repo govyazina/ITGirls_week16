@@ -266,16 +266,25 @@ function selectModification() {
 }
 
 function addCheckboxes(id, name, price) {
-    document.querySelector("div.optionalEquipment").insertAdjacentHTML("afterbegin", `<input type="checkbox" id="${id}" value="${price}"><label for="${id}">${name}</label><br>`);
+    document.querySelector(".optionalEquipment_other").insertAdjacentHTML("beforeend", `<input type="checkbox" id="${id}" value="${price}"><label for="${id}">${name}</label><br>`);
 }
 
 function addRadio(id, name, group, price) {
-    document.querySelector("div.optionalEquipment").insertAdjacentHTML("afterbegin", `<input type="radio" name="${group}" id="${id}" value="${price}"><label for="${id}">${name}</label><br>`);
+    document.querySelector(".optionalEquipment_color").insertAdjacentHTML("beforeend", `<input type="radio" name="${group}" id="${id}" value="${price}"><label for="${id}">${name}</label><br>`);
 }
 
 function addOptionalEquipment() {
     let optionalEquipmentsFiltered = getOptionalEquipment();
     document.querySelector(".optionalEquipment").innerHTML = "";
+    document.querySelector(".optionalEquipment").insertAdjacentHTML(
+        "afterbegin",
+        ` <fieldset class="optionalEquipment_color">
+            <legend>выберите цвет:</legend>
+        </fieldset>
+        <fieldset class="optionalEquipment_other">
+            <legend>и другие плюшки:</legend>
+        </fieldset>`
+    )
     for (let i = 0; i < optionalEquipmentsFiltered.length; i++) {
         let {id, name, group, price} = optionalEquipmentsFiltered[i];
         if (group === 'Color') {
