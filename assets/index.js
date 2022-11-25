@@ -266,11 +266,16 @@ function selectModification() {
 }
 
 function addCheckboxes(id, name, price) {
-    document.querySelector(".optionalEquipment_other").insertAdjacentHTML("beforeend", `<input type="checkbox" id="${id}" value="${price}"><label for="${id}">${name}</label><br>`);
+        document.querySelector(".optionalEquipment_other").insertAdjacentHTML("beforeend", `<input type="checkbox" id="${id}" value="${price}"><label for="${id}">${name}</label><br>`);
 }
 
 function addRadio(id, name, group, price) {
+    if (price === 0) {
+        document.querySelector(".optionalEquipment_color").insertAdjacentHTML("beforeend", `<input type="radio" name="${group}" id="${id}" value="${price}" checked><label for="${id}">${name}</label><br>`);
+    }
+    else {
     document.querySelector(".optionalEquipment_color").insertAdjacentHTML("beforeend", `<input type="radio" name="${group}" id="${id}" value="${price}"><label for="${id}">${name}</label><br>`);
+    }
 }
 
 function addOptionalEquipment() {
