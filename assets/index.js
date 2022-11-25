@@ -232,7 +232,6 @@ function fillSelect() {
         let id = arr[i].id;
         addOption(data, id);
     }
-
 }
 
 function addOption(data, id) {
@@ -243,16 +242,21 @@ function addOption(data, id) {
 }
 
 function showSum() {
-    let idMod = document.querySelector("select.modification").value;
-    let sum = calcSum(idMod);
+    let sum = calcSum();
     document.querySelector("div.sum").innerHTML = "&#8364;" + sum;
 }
 
-function calcSum(i) {
+function calcSum() {
+    const element = selectModification()
+   return element.price;
+}
+
+function selectModification() {
+    const id = Number(document.querySelector("select.modification").value);
     let arr = models[selectedModel];
-    const indexArr = arr.findIndex(function (e) {
-        return i == e.id;
+    return  arr.find(function (e) {
+        return id === e.id;
     });
-   return arr[indexArr].price;
+
 }
 
