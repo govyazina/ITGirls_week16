@@ -1,5 +1,12 @@
 let numbers = [];
 
+document.querySelector("#input").addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.querySelector(".add").click();
+    }
+})
+
 function addInArray() {
     let input = document.querySelector("#input");
     if (!isNaN(Number(input.value))) {
