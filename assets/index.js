@@ -247,8 +247,9 @@ function showSum() {
 }
 
 function calcSum() {
-    const element = getSelectedModification()
-    return element.price;
+    const baseModification = getSelectedModification();
+    const sumOptionalEquipments = selectOptionalEquipment();
+    return baseModification.price + sumOptionalEquipments;
 }
 
 function getSelectedModification() {
@@ -264,23 +265,23 @@ function selectModification() {
     return elem;
 }
 
-function addCheckboxes(id, name) {
-    document.querySelector("div.optionalEquipment").insertAdjacentHTML("afterbegin", `<input type="checkbox" id="${id}"><label for="${id}">${name}</label><br>`);
+function addCheckboxes(id, name, price) {
+    document.querySelector("div.optionalEquipment").insertAdjacentHTML("afterbegin", `<input type="checkbox" id="${id}" value="${price}"><label for="${id}">${name}</label><br>`);
 }
 
-function addRadio(id, name, group) {
-    document.querySelector("div.optionalEquipment").insertAdjacentHTML("afterbegin", `<input type="radio" name="${group}" id="${id}"><label for="${id}">${name}</label><br>`);
+function addRadio(id, name, group, price) {
+    document.querySelector("div.optionalEquipment").insertAdjacentHTML("afterbegin", `<input type="radio" name="${group}" id="${id}" value="${price}"><label for="${id}">${name}</label><br>`);
 }
 
-function addOptionalEquipment(elem) {
+function addOptionalEquipment() {
     let optionalEquipmentsFiltered = getOptionalEquipment();
-
+    document.querySelector(".optionalEquipment").innerHTML = "";
     for (let i = 0; i < optionalEquipmentsFiltered.length; i++) {
-        let {id, name, group} = optionalEquipmentsFiltered[i];
+        let {id, name, group, price} = optionalEquipmentsFiltered[i];
         if (group === 'Color') {
-            addRadio(id, name, group);
+            addRadio(id, name, group, price);
         } else {
-            addCheckboxes(id, name);
+            addCheckboxes(id, name, price);
         }
     }
 }
@@ -302,8 +303,22 @@ function filterOptEqui(elem) {
     }
 }
 
-const qwe = {
-    color: 'ble',
-    len: 42
-};
+function selectOptionalEquipment() {
+    let priceColor = 0;
+    let priceOptions = sumOptionals();
+    if (document.querySelector('input[name="Color"]:checked')){
+        priceColor += Number(document.querySelector('input[name="Color"]:checked').value);
+    }
+    return priceColor + priceOptions;
+}
+
+function sumOptionals() {
+    let sum = 0;
+    const checked = document.querySelectorAll('input[type="checkbox"]:checked');
+    for (let i = 0; i < checked.length; i++) {
+        sum += Number(checked[i].value);
+    }
+    return sum;
+}
+
 
