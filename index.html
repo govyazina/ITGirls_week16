@@ -2,25 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>task 2</title>
-  <link rel="stylesheet" href="./assets/style.css">
+    <title>Калькулятор стоимости</title>
+    <!--    font open sans-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
 <section class="car_calc">
-  <div class="model" oninput="selectModel()">
-      <fieldset class="car_model">
-          <legend>Выберите модель</legend>
-      <input type="radio" name="model" id="a3" value="A3">
-      <label for="a3">A3</label>
-      <input type="radio" name="model" id="q3" value="Q3">
-      <label for="q3">Q3</label>
-      </fieldset>
-  </div>
-  <div class="modification">
-      <select class="modification" oninput="selectModification()">
-          <option disabled selected>выберите двигатель</option>
-      </select>
-  </div>
+    <section class="about">
+        Можно выбрать всего из двух моделей audi, зато у каждой из них можно выбирать модификацию двигателя, а так же другие интересные плюшки. Сначала выберите модель, потом выберите двигатель из выпадающего списка, а потом выбирайте цвет и другие опции. Для разных моделей и модификаций доступны разные опции! После того, как сделаете выбор, нажмите на кнопку "рассчитать стоимость". Если вам захочется, что-то изменить, то после этого нажмите на кнопку ещё раз, чтобы увидеть обновленную сумму.
+    </section>
+    <section class="model" oninput="selectModel()">
+        <fieldset class="car_model">
+            <legend>Выберите модель</legend>
+            <input type="radio" name="model" id="a3" value="A3">
+            <label for="a3">A3</label>
+            <input type="radio" name="model" id="q3" value="Q3">
+            <label for="q3">Q3</label>
+        </fieldset>
+    </section>
+    <section class="modification">
+        <select class="modification" oninput="selectModification()">
+            <option disabled selected>выберите двигатель</option>
+        </select>
+    </section>
     <fieldset class="optionalEquipment">
 
     </fieldset>
