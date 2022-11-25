@@ -95,7 +95,6 @@ const models = {
         },
     ],
 };
-
 const optionalEquipment = [
     {
         id: 1,
@@ -213,13 +212,14 @@ const optionalEquipment = [
         group: 'Color',
     },
 ];
+
 let selectedModel;
 
 function selectModel() {
-    if (selectedModel){
+    if (selectedModel) {
         let element = document.querySelector("select.modification");
         element.innerHTML = "";
-        element.insertAdjacentHTML("afterbegin","<option disabled selected>выберите двигатель</option>");
+        element.insertAdjacentHTML("afterbegin", "<option disabled selected>выберите двигатель</option>");
     }
     selectedModel = document.querySelector('input[name="model"]:checked').value;
     fillSelect()
@@ -247,16 +247,63 @@ function showSum() {
 }
 
 function calcSum() {
-    const element = selectModification()
-   return element.price;
+    const element = getSelectedModification()
+    return element.price;
 }
 
-function selectModification() {
+function getSelectedModification() {
     const id = Number(document.querySelector("select.modification").value);
     let arr = models[selectedModel];
-    return  arr.find(function (e) {
+    return arr.find(function (e) {
         return id === e.id;
     });
-
 }
+function selectModification() {
+    let elem = getSelectedModification();
+    addOptionalEquipment(elem);
+    return elem;
+}
+
+function addCheckboxes(id, name) {
+    document.querySelector("div.optionalEquipment").insertAdjacentHTML("afterbegin", `<input type="checkbox" id="${id}"><label for="${id}">${name}</label><br>`);
+}
+
+function addRadio(id, name, group) {
+    document.querySelector("div.optionalEquipment").insertAdjacentHTML("afterbegin", `<input type="radio" name="${group}" id="${id}"><label for="${id}">${name}</label><br>`);
+}
+
+function addOptionalEquipment(elem) {
+    let optionalEquipmentsFiltered = getOptionalEquipment();
+
+    for (let i = 0; i < optionalEquipmentsFiltered.length; i++) {
+        let {id, name, group} = optionalEquipmentsFiltered[i];
+        if (group === 'Color') {
+            addRadio(id, name, group);
+        } else {
+            addCheckboxes(id, name);
+        }
+    }
+}
+
+function getOptionalEquipment() {
+    return optionalEquipment.filter(filterOptEqui)
+}
+
+function filterOptEqui(elem) {
+    const modification = getSelectedModification();
+    if (elem.model !== selectedModel) {
+        return false;
+    } else {
+        if (elem.availableForModifications === undefined) {
+            return true;
+        } else if (elem.availableForModifications.includes(modification.modification)) {
+            return true;
+        }
+    }
+}
+
+const qwe = {
+    color: 'ble',
+    len: 42
+};
 
